@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream Bank</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <title>DreamBank</title>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header class="navbar">
+        <div class="logo">Dream<span>Bank</span></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <h2>Guest</h2>
+            <a href="login.html" class="signup">Login</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-text">
+            <h1><span class="highlight">CASHLESS</span> IS NO LONGER JUST A DREAM</h1>
+            <p>Help you digitize your finances and transactions in a more practical and safe way</p>
+            <div class="hero-buttons">
+                <a href="signup.html" class="get-started">Get Started</a>
+                <a href="about.html" class="learn-more">Learn more</a>
+            </div>
+            <div class="stats">
+                <div>20+ Transactions</div>
+                <div>50+ Partners</div>
+                <div>24/7 Service</div>
+                <div>2.1M Customers</div>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="images/home-page-image.png" alt="">
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="feature">
+            <h3>Transaction</h3>
+            <p>Very fast.</p>
+        </div>
+        <div class="feature">
+            <h3>Shopping</h3>
+            <p>we have a good shop.</p>
+        </div>
+        <div class="feature">
+            <h3>Investment</h3>
+            <p>you are welcome.</p>
+        </div>
+    </footer>
+</body>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", async () => {
+        const authButtons = document.querySelector(".auth-buttons");
+        const dashboardLink = document.querySelector("a[href='dashboard.html']");
+    
+        const token = localStorage.getItem("token");
+    
+        if (token) {
+            try {
+                // Verify token and fetch user data from the backend
+                const response = await fetch("http://localhost:3000/api/auth/get-user", {
+                    method: "GET",
+                    headers: {
+                        "Authorization": token,
+                    },
+                });
+    
+                const userData = await response.json();
+    
+                if (response.ok) {
+                    // Display user email and allow access to dashboard
+                    authButtons.innerHTML = `<h2>${userData.username}</h2><a href="#" class="logout">Logout</a>`;
+                    attachLogoutListener();
+                } else {
+                    throw new Error("Invalid token");
+                }
+            } catch (error) {
+                console.error("Authentication error:", error);
+                handleGuestView();
+            }
+        } else {
+            handleGuestView();
+        }
+    
+        function handleGuestView() {
+            // Show "Guest" and redirect to login on Dashboard click
+            authButtons.innerHTML = `<h2>Guest</h2><a href="login.html" class="signup">Login</a>`;
+            dashboardLink.addEventListener("click", (e) => {
+                e.preventDefault();
+                alert("Please log in to access the dashboard.");
+                window.location.href = "login.html";
+            });
+        }
+    
+        function attachLogoutListener() {
+            const logoutButton = document.querySelector(".logout");
+            logoutButton.addEventListener("click", () => {
+                localStorage.removeItem("token");
+                window.location.reload(); // Reload the page to reflect logout
+            });
+        }
+    });
+    
+</script>
+
+</html>

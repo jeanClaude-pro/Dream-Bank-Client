@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream Bank</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
+    <title>DreamBank</title>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <header class="navbar">
+        <div class="logo">Dream<span>Bank</span></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <a href="login.html" class="signup">Login</a>
+        </div>
+    </header>
+    <div class="dashboard-heading">
+        <h1>Dashboard</h1>
+    </div>
+    <div class="container">
+        <h1>What would you like to do?</h1>
+        <div class="dashboard-options">
+            <div class="card" onclick="checkBalance()">
+                <h2>Check Balance</h2>
+                <p>View your current account balance.</p>
+            </div>
+            <div class="card" onclick="depositMoney()">
+                <h2>Deposit Money</h2>
+                <p>Add money to your account.</p>
+            </div>
+            <div class="card" onclick="transferFunds()">
+                <h2>Transfer Funds</h2>
+                <p>Send money to another account.</p>
+            </div>
+            <div class="card" onclick="viewTransactions()">
+                <h2>View Transactions</h2>
+                <p>Check your recent transaction history.</p>
+            </div>
+        </div>
+    </div>
+    <footer>
+        © 2024 DreamBank. All Rights Reserved.
+    </footer>
+
+    <script>
+        function checkBalance() {
+            alert("This will display the user's balance.");
+        }
+
+        function depositMoney() {
+            alert("This will simulate depositing money.");
+        }
+
+        function transferFunds() {
+            alert("This will simulate transferring funds.");
+        }
+
+        function viewTransactions() {
+            alert("This will show the user's transactions.");
+        }
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            const authButtons = document.querySelector(".auth-buttons");
+            const dashboardLink = document.querySelector("a[href='dashboard.html']");
+        
+            const token = localStorage.getItem("token");
+        
+            if (token) {
+                try {
+                    // Verify token and fetch user data from the backend
+                    const response = await fetch("http://localhost:3000/api/auth/get-user", {
+                        method: "GET",
+                        headers: {
+                            "Authorization": token,
+                        },
+                    });
+        
+                    const userData = await response.json();
+        
+                    if (response.ok) {
+                        // Display user email and allow access to dashboard
+                        authButtons.innerHTML = `<h2>${userData.username}</h2><a href="#" class="logout">Logout</a>`;
+                        attachLogoutListener();
+                    } else {
+                        throw new Error("Invalid token");
+                    }
+                } catch (error) {
+                    console.error("Authentication error:", error);
+                    handleGuestView();
+                }
+            } else {
+                handleGuestView();
+            }
+        
+            function handleGuestView() {
+                // Show "Guest" and redirect to login on Dashboard click
+                authButtons.innerHTML = `<h2>Guest</h2><a href="login.html" class="signup">Login</a>`;
+                dashboardLink.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    alert("Please log in to access the dashboard.");
+                    window.location.href = "login.html";
+                });
+            }
+        
+            function attachLogoutListener() {
+                const logoutButton = document.querySelector(".logout");
+                logoutButton.addEventListener("click", () => {
+                    localStorage.removeItem("token");
+                    window.location.href = "/Client/index.html";
+                });
+            }
+        });
+        
+    </script>
+</body>
+
+</html>

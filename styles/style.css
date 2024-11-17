@@ -1,0 +1,337 @@
+/* style.css */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Navigation Bar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 80px;
+    background-color: #2d2d3b;
+}
+
+.navbar .logo {
+    color: #ffffff;
+    font-size: 24px;
+}
+
+.navbar .logo span {
+    color: #8456f3;
+}
+
+.navbar nav ul {
+    display: flex;
+    list-style: none;
+}
+
+.navbar nav ul li {
+    margin-right: 20px;
+}
+
+.auth-buttons{
+    display: flex;
+    place-items: center;
+}
+
+.auth-buttons h2 {
+    color: #fff;
+}
+
+.navbar nav ul li a, .auth-buttons a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 15px;
+}
+
+
+.auth-buttons .signup {
+    background-color: #5e5d69;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.logout {
+    background-color: #8456f3;
+    margin: 0 1rem;
+    font-weight: bold;
+}
+
+/* Hero Section */
+.hero {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 60px;
+    background-color: #2d2d3b;
+    color: #ffffff;
+}
+
+.hero-text {
+    flex: 1;
+    padding: 20px;
+}
+
+.hero-text h1 {
+    font-size: 36px;
+    color: #ffffff;
+}
+
+.hero-text .highlight {
+    color: #8456f3;
+}
+
+.hero-text p {
+    margin: 10px 0 20px;
+    font-size: 20px;
+    color: #b0b0c3;
+}
+
+.hero-buttons{
+    margin: 6rem 0;
+}
+
+.hero-buttons a {
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #ffffff;
+    margin-right: 10px;
+}
+
+.get-started {
+    background-color: #8456f3;
+}
+
+.learn-more {
+    color: #b0b0c3;
+    background-color: #8456f3;
+}
+
+.stats {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+.stats div {
+    font-size: 14px;
+    color: #ffffff;
+}
+
+.hero-image {
+    flex: 1;
+    /* Add your image or styling here */
+}
+
+/* Footer Section */
+footer {
+    display: flex;
+    justify-content: space-around;
+    padding: 40px;
+    background-color: #f5f5fa;
+    color: #2d2d3b;
+}
+
+.feature {
+    text-align: center;
+}
+
+.feature h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.feature p {
+    font-size: 14px;
+    color: #7a7a85;
+}
+
+
+
+
+
+
+
+
+
+/* Container styling */
+.login-wrapper{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+.container {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 350px;
+}
+
+.login-wrapper .container h1 {
+    text-align: center;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* Form styling */
+.form-container {
+    margin-top: 20px;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container form h2{
+    margin: 2rem 0;
+}
+
+.form-container input {
+    margin-bottom: 15px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    outline-color: #28a745;
+    transition: border-color 0.3s;
+}
+
+.form-container input:focus {
+    border-color: #28a745;
+}
+
+.form-container button {
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #28a745;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.form-container button:hover {
+    background-color: #218838;
+}
+
+.form-container button:active {
+    transform: scale(0.98);
+}
+
+.form-container a {
+    text-align: center;
+    margin-top: 10px;
+    display: block;
+    color: #007bff;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+.form-container a button {
+    background-color: #007bff; /* Blue for the back button */
+    padding: 10px;
+    font-size: 1em;
+}
+
+.form-container a button:hover {
+    background-color: #0056b3; /* Same Darker blue on hover */
+}
+
+/* Responsive behavior */
+@media (max-width: 400px) {
+    .container {
+        width: 90%;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    button, input {
+        font-size: 0.9em;
+    }
+}
+
+/* Navbar Styling */
+.navbar ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar ul li {
+    margin: 0 15px;
+}
+
+.navbar ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Box Styling */
+.box {
+    width: 300px;
+    height: 200px;
+    border: 2px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Sliding Image Box */
+.slide-box img {
+    width: 100%;
+    height: 100%;
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+}
+
+.slide-box img.active {
+    display: block;
+}
+
+/* YouTube Video Box */
+.video-box iframe {
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+.status-message{
+    color: aquamarine;
+    padding: 1rem;
+    font-size: 18px;
+}
